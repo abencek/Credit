@@ -1,0 +1,140 @@
+@model DetailIndexViewModel
+
+
+<div class="row" style="min-width:992px;">
+  <div class="col-2 d-flex justify-content-center align-items-center">
+    <div class="card w-100 h-100">
+      <div class="card-header text-center text-uppercase bg-white font-weight-bold">
+        Customer ID:<span class="ml-2">@Model.CustomerInfo?.CustomerId</span>
+      </div>
+      <div class="card-img-top h-75 bg-white">
+        <div class="h-100 w-100 d-flex align-items-center justify-content-center">
+          <i class="fas fa-user-circle fa-fw fa-8x mw-100"></i>
+        </div>
+      </div>
+      @{
+        string iconColor = Model.CustomerInfo?.CustomerStatusValue=="Active"?"text-success":"text-danger";
+      }
+      <ul class="list-group list-group-flush text-uppercase">
+        <li class="list-group-item d-flex align-items-center justify-content-center">@Model.CustomerInfo?.CustomerStatusValue
+            <span class="d-block ml-2 @iconColor"><i class="fas fa-circle"></i></span>
+        </li>
+        <li class="list-group-item d-flex align-items-center justify-content-center">Products
+            <span class="badge badge-secondary ml-2">@(Model.TabAgreementsData.Count())</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-4">
+    <div class="card h-100">
+      <div class="card-body pb-0">
+        <div class="form-group">
+          <label asp-for="@Model.CustomerInfo.FirstName" class="mb-0 pb-0 font-weight-bold"></label>
+          <input asp-for="@Model.CustomerInfo.FirstName" class="form-control form-control-plaintext pl-0">
+        </div>
+        <div class="form-group">
+          <label asp-for="@Model.CustomerInfo.LastName" class="mb-0 pb-0 font-weight-bold"></label>
+          <input asp-for="@Model.CustomerInfo.LastName" class="form-control form-control-plaintext pl-0">
+        </div>
+        <div class="form-group">
+          <label asp-for="@Model.CustomerInfo.PersonalId" class="mb-0 pb-0 font-weight-bold"></label>
+          <input asp-for="@Model.CustomerInfo.PersonalId" class="form-control form-control-plaintext pl-0">
+        </div>
+        <div class="form-group">
+          <label asp-for="@Model.CustomerInfo.BirthDate" class="mb-0 pb-0 font-weight-bold"></label>
+          @Html.EditorFor(item=>item.CustomerInfo.BirthDate,new {htmlAttributes=new {@type="text",@class="form-control form-control-plaintext pl-0"}})
+      </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Address 1 -->
+   <div class="col-3">
+    <div class="card h-100">
+      <div class="card-body pb-0">
+        <div class="form-group">
+          <label asp-for="@Model.Address1.AddressTypeValue" class="mb-0 pb-0 font-weight-bold"></label><span class="ml-1 font-weight-bold">1</span>
+          <input asp-for="@Model.Address1.AddressTypeValue"
+                class="form-control form-control-plaintext pl-0">
+        </div>
+        <div class="form-group">
+          <label asp-for="@Model.Address1.Street" class="mb-0 pb-0 font-weight-bold"></label>
+          <input asp-for="@Model.Address1.Street"
+                class="form-control form-control-plaintext pl-0">
+        </div>
+        <div class="form-group">
+          <label asp-for="@Model.Address1.City" class="mb-0 pb-0 font-weight-bold"></label>
+          <input asp-for="@Model.Address1.City"
+                class="form-control form-control-plaintext pl-0">
+        </div>
+        <div class="form-group">
+          <label asp-for="@Model.Address1.Zip" class="mb-0 pb-0 font-weight-bold"></label>
+          <input asp-for="@Model.Address1.Zip"
+                class="form-control form-control-plaintext pl-0">
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Address 2 -->
+   <div class="col-3">
+    <div class="card h-100">
+      <div class="card-body pb-0">
+        <div class="form-group">
+          <label asp-for="@Model.Address2.AddressTypeValue" class="mb-0 pb-0 font-weight-bold"></label><span class="ml-1 font-weight-bold">2</span>
+          <input asp-for="@Model.Address2.AddressTypeValue"
+                class="form-control form-control-plaintext pl-0">
+        </div>
+        <div class="form-group">
+          <label asp-for="@Model.Address2.Street" class="mb-0 pb-0 font-weight-bold"></label>
+          <input asp-for="@Model.Address2.Street"
+                class="form-control form-control-plaintext pl-0">
+        </div>
+        <div class="form-group">
+          <label asp-for="@Model.Address2.City" class="mb-0 pb-0 font-weight-bold"></label>
+          <input asp-for="@Model.Address2.City"
+                class="form-control form-control-plaintext pl-0">
+        </div>
+        <div class="form-group">
+          <label asp-for="@Model.Address2.Zip" class="mb-0 pb-0 font-weight-bold"></label>
+          <input asp-for="@Model.Address2.Zip"
+                class="form-control form-control-plaintext pl-0">
+      </div>
+      </div>
+    </div>
+  </div>
+
+</div>        
+
+
+<!-- Tabs -->
+<div class="row mt-5" style="min-width:992px;">
+   <div class="col-12">
+     <div class="card">
+        <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+                <a class="nav-link text-dark font-weight-bold active" id="agreements-tab" data-toggle="tab"  href="#agreements" role="tab">Agreements</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark font-weight-bold" id="comments-tab" data-toggle="tab" href="#comments" role="tab">Comments</a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body overflow-auto vh-50">
+          <div class="tab-content">
+            <div class="tab-pane active" id="agreements" role="tabpanel">
+                @await Html.PartialAsync("_DetailIndexAgreementsTablePartial", Model.TabAgreementsData)
+            </div>
+            <div class="tab-pane" id="comments" role="tabpanel">
+                @await Html.PartialAsync("_DetailIndexCommentsTablePartial", Model.TabCommentsData)
+            </div>
+          </div>
+        </div>
+    </div>
+   </div>
+</div>
+
+    

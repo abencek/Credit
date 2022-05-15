@@ -1,0 +1,29 @@
+@model string
+@{
+    Dictionary<string,string> categories = new () {
+            {"Customers","Customer,Index,fa-border-none"},
+            {"Agreements","Agreement,Index,fa-border-none"},        
+            {"Charts","Chart,Index,fa-chart-line"},
+            {"Reports","Report,Index,fa-download"}, 
+            {"Administration","Admin,Index,fa-user-cog"}, 
+    };
+}
+
+<ul class="sidebar navbar-nav pt-2">
+    @foreach (KeyValuePair<string, string> item in categories)
+    {
+        @*Display Administration tab only for users with Admin role*@
+        @if (User.IsInRole("admins") == false && item.Key == "Administration")
+        {
+            continue;
+        }
+
+        <li class="nav-item @(Model==item.Key ? "active" : "")">
+            <a class="nav-link" asp-controller=@item.Value.Split(',')[0] asp-action=@item.Value.Split(',')[1]>
+                <i class="fas fa-fw @item.Value.Split(',')[2]"></i>
+                <span>@item.Key</span>
+            </a>
+        </li>
+
+    }
+</ul>

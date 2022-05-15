@@ -1,0 +1,40 @@
+
+<!-- Charts -->
+<div class="row charts mr-lg-4">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header bg-transparent text-center py-1 font-weight-bold text-secondary border-0">Chart 1</div>  
+            <div class="card-body"><canvas id="chart1" height="200"></canvas></div>
+        </div>
+        <div class="card mt-5">
+            <div class="card-header bg-transparent text-center py-1 font-weight-bold text-secondary border-0">Chart 2</div> 
+            <div class="card-body"><canvas id="chart2" height="200"></canvas></div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header bg-transparent text-center py-1 font-weight-bold text-secondary border-0">Chart 3</div> 
+            <div class="card-body"><canvas id="chart3" height="200"></canvas></div>
+        </div>
+        <div class="card mt-5">
+            <div class="card-header bg-transparent text-center py-1 font-weight-bold text-secondary border-0">Chart 4</div> 
+            <div class="card-body"><canvas id="chart4" height="200"></canvas></div>
+        </div>
+    </div>
+    
+</div>
+   
+
+@section StyleSheetSection {
+    <link rel="stylesheet" asp-href-include="css/chart.css" asp-append-version="true">
+}
+
+@section ScriptSection {
+    <script asp-src-include="lib/chart.js/chart.js"></script>
+    <script asp-src-include="js/chart.js" asp-append-version="true"></script>
+}
+
+
+
+
+

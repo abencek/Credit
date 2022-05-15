@@ -1,0 +1,49 @@
+@model AccountLoginViewModel
+@{
+    ViewBag.Header="Sign in";
+    ViewBag.Submit="Submit";
+}
+
+<div class="row no-gutters overflow-hidden">
+    <div id="login-image" class="d-none d-md-flex col-md-8 col-lg-6 login-bg-image anime-group-1">
+    </div>
+    <div id="login-form-wrap" class="col-md-4 col-lg-6 d-flex flex-column align-items-center justify-content-center">     
+        <div id="login-form" class="card card-login text-secondary border-0">
+            <div class="card-body">
+                <h4 class="text-center anime-group-2">@ViewBag.Header</h4>
+                <div id="model-errors-wrap">
+                    <div asp-validation-summary="ModelOnly" id="model-errors" class="text-danger anime-group-2"></div>
+                </div>
+                <form method="post" asp-controller="Account" asp-action="Login">
+                    <input type="hidden" asp-for="ReturnUrl">
+                    <div class="form-group form-group-animate anime-group-2">
+                        <input asp-for="Name" class="form-control" aautocomplete="off" placeholder=" ">
+                        <label asp-for="Name"></label>
+                    </div>
+                    <div class="form-group form-group-animate anime-group-2">
+                        <input asp-for="Password" class="form-control" aautocomplete="off" placeholder=" ">
+                        <label asp-for="Password"></label>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mt-5">
+                        <div class="custom-control custom-checkbox anime-group-2">
+                            <input type="checkbox" class="custom-control-input" asp-for="RememberMe">
+                            <label class="custom-control-label" asp-for="RememberMe"></label>
+                        </div>
+                        <button class="btn btn-primary ml-2 anime-group-2" type="submit">@ViewBag.Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="copy-text" class="anime-group-3">
+            <span>Created by </span>
+            <span>AB</span>
+        </div>
+    </div>
+</div>
+
+
+@section ScriptSection {
+    <script asp-src-include="js/account.js" asp-append-version="true"></script>
+}
+
+

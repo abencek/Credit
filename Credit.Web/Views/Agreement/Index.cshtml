@@ -1,0 +1,48 @@
+@model AgreementIndexViewModel
+
+
+
+<div class="card mb-3">
+    <div class="card-header">
+        @await Html.PartialAsync("_AgreementIndexFilterPartial", Model.FilterItems) 
+    </div> 
+    <div class="card-body">
+        @await Component.InvokeAsync("AgreementTable", Model.Agreements)
+    </div>
+</div>
+<nav aria-label="Page navigation" page-model="@Model.PagingInfo" page-action="List" page-filter="@Model.FilterItems">
+</nav>
+
+
+@{ 
+  var agreement = new AgreementViewModel();
+}
+
+
+@await Html.PartialAsync("_AgreementEditModalPartial", agreement) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

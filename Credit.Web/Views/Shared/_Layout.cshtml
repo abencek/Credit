@@ -1,0 +1,81 @@
+@{
+    ViewData["Title"]="CREDIT";
+    ViewBag.UserMenuSettings="Settings";
+    ViewBag.UserMenuSignOut="Sign out";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel='icon' href='images/favicon.png' color='#ff0000'>
+    <title>@ViewData["Title"]</title>
+
+    <link rel="stylesheet" asp-href-include="lib/fontawesome-free/css/all.css">
+    <link rel="stylesheet" asp-href-include="lib/sb-admin/styles.css">
+    <link rel="stylesheet" asp-href-include="css/main.css" asp-append-version="true">
+    @RenderSection("StyleSheetSection", required: false)
+
+    <script asp-src-include="lib/jquery/dist/jquery.js"></script>
+    <script asp-src-include="lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script asp-src-include="js/main.js" asp-append-version="true"></script>
+    @RenderSection("ScriptSection", required: false)
+    @RenderSection("ScriptAngularSection", required: false)
+</head>
+<body id="page-top">
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+        <div class="mr-auto d-flex justify-content-between" id="logo">
+            <a class="navbar-brand ml-3 text-secondary" asp-controller="Customer">
+                <i class="fab fa-contao"></i>
+                <span class="font-weight-bold ml-2">@ViewData["Title"]</span>    
+            </a>
+            @if(ViewBag.SideBarItemSelected != null){
+               @await Html.PartialAsync("_SideBarTogglePartial")
+            }
+        </div>
+        <!-- Navbar -->
+        <ul class="navbar-nav ml-md-0">
+            <li class="nav-item dropdown no-arrow mx-1">
+            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" 
+                    role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 text-uppercase">@User.Identity.Name</span>
+                <i class="fas fa-user-circle fa-fw fa-2x"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                <a class="dropdown-item" asp-controller="AccountSettings" asp-action="Index">@ViewBag.UserMenuSettings</a>
+                <div class="dropdown-divider"></div>
+                <a asp-controller="Account" asp-action="Logout" class="dropdown-item font-weight-bold">@ViewBag.UserMenuSignOut</a>
+            </div>
+            </li>
+        </ul>
+    </nav>
+
+    <div id="wrapper">
+        <!--Left sidebar-->
+        @if (ViewBag.SideBarItemSelected != null)
+        {
+            @await Html.PartialAsync("_SideBarPartial", ViewBag.SideBarItemSelected as string)
+        }
+        <!--Main content-->
+        <div id="content-wrapper">
+            <div class="container-fluid">
+                <div class="card mb-2 border-0">
+                    <div class="card-body pt-3 pb-0 px-0">
+                        <h5 class="card-title">
+                            @if (ViewBag.SideBarItemSelected != null)
+                            {
+                                <span>@ViewBag.SideBarItemSelected</span>
+                            }
+                        </h5>
+                    </div>
+                </div>
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

@@ -1,0 +1,59 @@
+@model AgreementViewModel
+@{
+  Layout=null;
+}
+
+<div class="modal fade" id="modal-window" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-scrollabled modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+              <h5 class="modal-title text-secondary" id="modal-title">
+                Agreement number:<span class="ml-2">@Model.AgreementId</span>
+              </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body mt-sm-2">
+              <form action="#" class="mx-50"> 
+                <input type="hidden" asp-for="@Model.AgreementId">
+                 <div class="form-group row">
+                  @Html.LabelFor(m=>m.ProductType,new {@class="col-sm-4 col-form-label"})
+                  <div class="col-sm">
+                    <select class="form-control" asp-for="@Model.ProductType" asp-items="@ViewBag.ProductTypeSelectList">
+                    </select>
+                  </div> 
+                </div>
+                <div class="form-group row mb-4">
+                  <label asp-for="@Model.ProductTerm" class="col-sm-4 col-form-label"></label>
+                  <div class="col-sm">
+                      <input type="text" class="form-control" asp-for="@Model.ProductTerm">
+                  </div>
+                </div> 
+                <div class="form-group row mb-4">
+                  <label asp-for="@Model.IssueValue" class="col-sm-4 col-form-label"></label>
+                  <div class="col-sm">
+                      <input type="text" class="form-control" asp-for="@Model.IssueValue">
+                  </div>
+                </div>
+                <div class="form-group row mb-4">
+                  <label asp-for="@Model.StartDate" class="col-sm-4 col-form-label"></label>
+                  <div class="col-sm">
+                      <input type="text" class="form-control" asp-for="@Model.StartDate">
+                  </div>
+                </div>
+                <div class="form-group row mb-4">
+                  <label asp-for="@Model.PaidUpDate" class="col-sm-4 col-form-label"></label>
+                  <div class="col-sm">
+                      <input type="text" class="form-control" asp-for="@Model.PaidUpDate">
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer border-0 my-2 pt-0">
+              <a href="#" class="btn btn-secondary" data-dismiss="modal">Close</a>
+              <a href="#" class="btn btn-primary" id="modal-button-submit">Save</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+@model IEnumerable<CommentViewModel>
+
+@{
+    Type type = Model.GetType().GetGenericArguments().First();
+    Dictionary<string,string> columns = type.GetProperties()
+            .Where(x=>x.GetCustomAttribute<DisplayNameAttribute>()?.DisplayName!=null)
+            .ToDictionary(x=>x.Name,x=>x.GetCustomAttribute<DisplayNameAttribute>()?.DisplayName);
+}
+<div class="table-responsive">
+
+    <table class="table table-bordered table-fixed" id="dataTable">
+        <colgroup>
+            <col class="col-auto">
+        </colgroup>
+        <thead>
+            <tr>
+                @foreach(KeyValuePair<string,string> kvp in columns)
+                {
+                    <th scope="col">@kvp.Value</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                {ViewData["item"]=item;}
+
+                <tr>
+                    @foreach (string column in columns.Keys)
+                    {
+                        <td>@Html.Display("item."+column)</td>
+                    }                 
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

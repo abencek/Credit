@@ -1,0 +1,44 @@
+@model IEnumerable<AgreementViewModel>
+
+@{
+    //Use Model properties as column names
+    Type type = Model.GetType().GetGenericArguments().First();
+    string[] columns = type.GetProperties().Select(x=>x.GetCustomAttribute<DisplayNameAttribute>()?.DisplayName).Where(x=>x!=null).ToArray();
+}
+<div class="table-responsive">
+
+<table class="table table-bordered table-fixed" id="data-table">
+    <colgroup>
+        <col class="col-auto">
+    </colgroup>
+    <thead>
+        <tr>
+            @foreach (string item in columns)
+            {
+                <th scope="col">@item</th>
+            }
+                <th style="width:10%">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem=>item.AgreementId)</td>
+                <td>@Html.DisplayFor(modelItem=>item.ProductType)</td>
+                <td>@Html.DisplayFor(modelItem=>item.ProductTerm)</td>
+                <td>@Html.DisplayFor(modelItem=>item.IssueValue)</td>
+                <td>@Html.DisplayFor(modelItem=>item.StartDate)</td>
+                <td>@Html.DisplayFor(modelItem=>item.PaidUpDate)</td>            
+                <td>
+                    <div cclass="d-sm-flex justify-content-sm-around">
+                        <a asp-route="apiagreementget" asp-route-id="@item.AgreementId"
+                            target="_self" class="text-primary" cclass="btn btn-sm border-0" title="Edit">Edit
+                        </a> 
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>

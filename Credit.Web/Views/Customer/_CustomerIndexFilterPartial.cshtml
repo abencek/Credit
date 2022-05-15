@@ -1,0 +1,26 @@
+@model CustomerIndexFilterViewModel
+
+<form class="form-row w-100" method="get" id="filter" autocomplete="off">
+    <div class="col-2">
+        <label asp-for="@Model.FilterCustomerId" class="sr-only"></label>
+        <input class="form-control" type="text" asp-for="@Model.FilterCustomerId">
+    </div> 
+    <div class="col-2">
+        <label asp-for="@Model.FilterFirstName" class="sr-only"></label>
+        <input class="form-control" type="text" asp-for="@Model.FilterFirstName">
+    </div> 
+    <div class="col-2">
+        <label asp-for="@Model.FilterLastName" class="sr-only"></label>
+        <input class="form-control" type="text" asp-for="@Model.FilterLastName">
+    </div> 
+    <div class="col-2">
+        <label asp-for="@Model.FilterPersonalId" class="sr-only"></label>
+        <input class="form-control" type="text" asp-for="@Model.FilterPersonalId">
+    </div>  
+    <input type="hidden" name="page" id="page" value="1">
+    <div class="ml-auto">
+        <button class="btn btn-primary" type="submit" asp-action="Index" >
+            <i class="fas fa-filter mr-1"></i>Filter
+        </button>
+    </div>
+</form>

@@ -1,0 +1,19 @@
+@model ReportIndexViewModel
+
+@{
+    string[] colors = new string[] {"#f56954", "#00a65a", "#f39c12", "#00c0ef", "#3c8dbc", "#d2d6de"};
+    string styleValue = @String.Concat("background-color:",colors[Model.ReportGroupId-1],";animation-delay:0.",Model.ReportGroupId.ToString(),"s");
+}
+
+
+<div class="report-card card text-white border-0 m-2 animateReportCard" style="@styleValue">
+    <div class="card-body p-0 m-0">
+        <h5 class="card-title m-2 w-50">@Model.ReportName</h5>
+        <div class="icon">&nbsp;<i class="far fa-file-excel"></i></div> 
+    </div>
+    <div class="card-footer p-0 border-white">
+        <a class="btn btn-block bg-transparent text-white" asp-action="CreateReport" asp-route-reportid=@Model.ReportId>Download
+            <i class="fas fa-arrow-circle-down ml-2"></i>
+        </a>
+    </div>
+</div>

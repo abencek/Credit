@@ -1,0 +1,18 @@
+
+.nav-tabs .nav-link {
+    padding: 8px 12px 8px 12px;
+    text-decoration: none;
+    border-radius: 0 !important;
+    border-color: #C5D0DC;
+    color: #999;
+    line-height: 18px;
+    position: relative;
+  }
+  
+  .nav-tabs .nav-link.active {
+    color: #576373;
+    border-color: #C5D0DC #C5D0DC transparent;
+    border-top: 2px solid #4C8FBD;
+    background-color: rgba(76, 144, 189, 0.05);
+  }
+  

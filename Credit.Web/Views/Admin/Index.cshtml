@@ -1,0 +1,173 @@
+@model AdminIndexViewModel
+
+
+@{
+    ViewBag.UsersHeading="Users";
+    ViewBag.RolesHeading="Roles";
+}
+
+<!-- USERS -->
+<div class="accordion" id="accordionAdmin">
+    <div class="card rounded-0">
+        <div class="card-header py-2 mb-2 bg-light" id="headingOne">
+            <h2 class="mb-0 ml-1">
+                <button class="btn btn-link d-block w-100 text-secondary text-left text-decoration-none text-uppercase font-weight-bold collapsed"  
+                    type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    @ViewBag.UsersHeading
+                </button>
+            </h2>
+        </div>
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionAdmin">
+            <div class="card-body">
+                <div class="table-responsive mt-3">
+                    <table class="table editable-table">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="width:15%;">User Name</th>
+                                <th scope="col" style="width:20%;">Email</th>
+                                <th scope="col" style="width:15%;">Phone Number</th>
+                                <th scope="col" style="width:15%;">Lockout Enabled</th>
+                                <th scope="col" style="width:20%;">Assigned Role</th>
+                                <th scope="col" style="width:15%;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(var item in Model.Users){
+                                <tr>
+                                    <td data-field="UserName">@item.UserName</td>
+                                    <td data-field="Email">@item.Email</td>
+                                    <td data-field="PhoneNumber">@item.PhoneNumber</td> 
+                                    <td data-field="LockoutEnabled">@item.LockoutEnabled</td> 
+                                    <td data-field="RoleNames">@item.RoleNames</td>       
+                                    <td>
+                                        <div>
+                                            <a href="#" class="text-primary edit" title="Edit" 
+                                                data-action=@Url.Action("SaveUser","AdminApi")>
+                                                Edit
+                                            </a> 
+                                            <span>|</span>
+                                            <a href="#" class="text-primary delete" title="Delete" 
+                                                data-action=@Url.Action("DeleteUser","AdminApi")>
+                                                Delete
+                                            </a> 
+                                        </div>  
+                                    </td>
+                                </tr>
+                            }
+                            <!--Table row template-->
+                            <tr>
+                                <td data-field="UserName"></td>
+                                <td data-field="Email"></td>
+                                <td data-field="PhoneNumber"></td> 
+                                <td data-field="LockoutEnabled"></td> 
+                                <td data-field="RoleNames"></td>        
+                                <td>
+                                    <div class="d-none">
+                                        <a href="#" class="text-primary edit" title="Edit" 
+                                            data-action=@Url.Action("SaveUser","AdminApi")>
+                                            Edit
+                                        </a> 
+                                        <span>|</span>
+                                        <a href="#" class="text-primary delete" title="Delete" 
+                                            data-action=@Url.Action("DeleteUser","AdminApi")>
+                                            Delete
+                                        </a> 
+                                    </div> 
+                                    <div class="m-2">
+                                        <a href="#" class="text-primary add ml-2">+New</a>
+                                    </div> 
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ROLES -->
+    <div class="card rounded-0">
+        <div class="card-header py-2 bg-light" id="headingTwo">
+            <h2 class="mb-0 ml-1">
+            <button class="btn btn-link d-block w-100 text-secondary text-left text-decoration-none text-uppercase font-weight-bold collapsed" 
+                type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                @ViewBag.RolesHeading
+            </button>
+            </h2>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionAdmin">
+            <div class="card-body">
+                <div class="table-responsive mt-3">
+                    <table class="table editable-table">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="width:25%;">Name</th>
+                                <th scope="col" style="width:25%;">Normalized Name</th>
+                                <th scope="col" style="width:35%;">Id</th>
+                                <th scope="col" style="width:15%;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Roles)
+                            {
+                                <tr>
+                                    <td data-field="Name">@item.Name</td>
+                                    <td data-field="NormalizedName" data-edit="readonly">@item.NormalizedName</td>
+                                    <td data-field="Id" data-edit="readonly">@item.Id</td>
+                                    <td>
+                                        <div>
+                                            <a href="#" class="text-primary edit" title="Edit"
+                                               data-action=@Url.Action("SaveRole","AdminApi")>
+                                                Edit
+                                            </a>
+                                            <span>|</span>
+                                            <a href="#" class="text-primary delete" title="Delete"
+                                               data-action=@Url.Action("DeleteRole","AdminApi")>
+                                                Delete
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                            <!--Table row template-->
+                            <tr>
+                                <td data-field="Name"></td>
+                                <td data-field="NormalizedName"></td>
+                                <td data-field="Id"></td>
+                                <td>
+                                    <div class="d-none">
+                                        <a href="#" class="text-primary edit" title="Edit"
+                                           data-action=@Url.Action("SaveRole","AdminApi")>
+                                            Edit
+                                        </a>
+                                        <span>|</span>
+                                        <a href="#" class="text-primary delete" title="Delete"
+                                           data-action=@Url.Action("DeleteRole","AdminApi")>
+                                            Delete
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="#" class="text-primary add ml-2">+New</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var tableDropdowns=@Html.Raw(@Model.DropdownsData);
+</script>
+
+
+@section ScriptSection {
+    <script asp-src-include="js/admin.js" asp-append-version="true"></script> 
+}
+
+@section StyleSheetSection {
+    <link rel="stylesheet" asp-href-include="css/admin.css" asp-append-version="true">
+}
+

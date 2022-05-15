@@ -1,0 +1,79 @@
+/*-------LOGIN PAGE---------*/
+#login-form-wrap {
+  min-height: 100vh;
+}
+
+#login-form {
+  min-width: 40%;
+  margin-bottom: 2em;
+  position: relative;
+}
+
+#login-image {
+  background-image: url("../images/account-bg.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+#login-form h4::after {
+  content: " ";
+  width: 100px;
+  height: 4px;
+  background-color: var(--primary);
+  display: block;
+  border-radius: 3px;
+  margin: 10px auto 10px auto;
+}
+
+#login-form .form-group-animate {
+  position: relative;
+  margin-top: 12%;
+}
+
+#login-form .form-group-animate input {
+  margin-top: 40px;
+}
+
+#login-form .form-group-animate label {
+  position: absolute;
+  pointer-events: none;
+  top: 15%;
+  left: 10px;
+  transition: 0.3s transform ease;
+}
+
+
+#login-form .form-group-animate input:focus + label,
+#login-form .form-group-animate input:valid + label {
+    transform: translate(-10px, -150%);
+}
+
+#model-errors-wrap {
+  padding: 20px 0 10px 0;
+}
+
+#model-errors ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+
+/*-------COPYRIGHT TEXT---------*/
+#copy-text {
+  display: block;
+  position: absolute;
+  bottom: 0;
+}
+
+#copy-text span:nth-child(1) {
+  font-size: 0.9em;
+}
+
+#copy-text span:nth-child(2) {
+  font-size: 0.9em;
+  color: var(--primary);
+  font-weight: bold;
+}
+

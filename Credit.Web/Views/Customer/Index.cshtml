@@ -1,0 +1,46 @@
+@model CustomerIndexViewModel
+
+<div class="card mb-3">
+    <div class="card-header">
+        @await Html.PartialAsync("_CustomerIndexFilterPartial", Model.FilterItems) 
+    </div> 
+    <div class="card-body">
+        @await Component.InvokeAsync("CustomerTable", Model.Customers)
+    </div>
+</div>
+<nav aria-label="Page navigation" page-model="@Model.PagingInfo" page-action="List" page-filter="@Model.FilterItems">
+</nav>
+
+
+@{
+  var customer = new CustomerViewModel();
+}
+
+
+@await Html.PartialAsync("_CustomerEditModalPartial", customer) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

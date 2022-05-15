@@ -1,0 +1,27 @@
+@model AgreementIndexFilterViewModel
+
+<form class="form-row w-100" method="get" id="filter" autocomplete="off">
+    <div class="col-2">
+        <label asp-for="@Model.FilterAgreementId" class="sr-only"></label>
+        <input class="form-control" type="text" asp-for="@Model.FilterAgreementId">
+    </div> 
+    <div class="col-2">
+        <label asp-for="@Model.FilterProductType" class="sr-only"></label>
+        <input class="form-control" type="text" asp-for="@Model.FilterProductType">
+    </div> 
+    <div class="col-2">
+        <label asp-for="@Model.FilterProductTerm" class="sr-only"></label>
+        <input class="form-control" type="text" asp-for="@Model.FilterProductTerm">
+    </div> 
+    <div class="col-2">
+        <label asp-for="@Model.FilterIssueValue" class="sr-only"></label>
+        <input class="form-control" type="text" asp-for="@Model.FilterIssueValue">
+    </div>  
+    <input type="hidden" name="page" id="page" value="1">
+    <div class="ml-auto">
+        <button class="btn btn-primary" type="submit" asp-action="Index" >
+            <i class="fas fa-filter mr-1"></i>
+            Filter
+        </button>
+    </div>
+</form>
